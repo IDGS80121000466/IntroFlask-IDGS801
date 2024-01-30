@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from flask import Flask, render_template, request, send_from_directory
+from forms import UserForm
 import os
+import forms
 
 app = Flask(__name__)
 
@@ -13,6 +15,13 @@ def alumnos_route():
     titulo = "UTL!!!"
     nombres = ["Mario", "Pedro", "Juan", "Angel"]
     return render_template("alumnos.html", titulo=titulo, nombres=nombres)
+
+@app.route("/alumnos2", methods=['GET', 'POST'])
+def alumnos():
+    alumno_clase=forms.UserForm(request.form)
+    if request.method=='POST':
+        pass
+    return render_template("alumnos2.html",form=alumno_clase)
 
 @app.route("/maestros")
 def maestros():
