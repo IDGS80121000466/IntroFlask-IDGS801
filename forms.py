@@ -4,15 +4,19 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TelField, IntegerField
 from wtforms import EmailField
 
-from wtforms.validators import DataRequired, Email
+from wtforms import validators
 
 
 class UserForm(Form):
-    nombre=StringField('nombre')
-    apaterno=StringField('apaterno')
-    amaterno=StringField('amaterno')
-    email=EmailField('email')
-    edad=IntegerField('edad')
+    nombre=StringField('nombre',[validators.DataRequired(message='El campo Nombre es requerido'),
+                                 validators.length(min=4,max=10,message='Ingresa nombre valido')])
+    apaterno=StringField('apaterno',[validators.DataRequired(message='El campo Apellido Paternoes requerido'),
+                                 validators.length(min=4,max=10,message='Ingresa Apellido Paterno valido')])
+    amaterno=StringField('amaterno',[validators.DataRequired(message='El campo Apellido Materno requerido'),
+                                 validators.length(min=4,max=10,message='Ingresa Apellido Materno valido')])
+    email=EmailField('email',[validators.Email(message='Ingrese un correo valido')])
+    edad=IntegerField('edad',[validators.DataRequired(message='El campo Edad requerido'),
+                                 validators.length(min=4,max=10,message='Ingresa Edad valida')])
 
 class PuntosForm(FlaskForm):
     x1 = IntegerField('x1')

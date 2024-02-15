@@ -24,16 +24,21 @@ def alumnos():
     nom=''
     apa=''
     ama=''
+    email=''
+    edad=''
     alumno_clase=forms.UserForm(request.form)
-    if request.method=='POST':
+    if request.method=='POST' and alumno_clase.validate():
         nom=alumno_clase.nombre.data
         apa=alumno_clase.apaterno.data
         ama=alumno_clase.amaterno.data
+        email=alumno_clase.email.data
         edad=alumno_clase.edad.data
         print('Nombre: {}'.format(nom))
         print('Apaterno: {}'.format(apa))
         print('Amaterno: {}'.format(ama))
-    return render_template("alumnos2.html",form=alumno_clase,nom=nom,apa=apa,ama=ama)
+        print('Email: {}'.format(email))
+        print('Edad: {}'.format(edad))
+    return render_template("alumnos2.html",form=alumno_clase,nom=nom,apa=apa,ama=ama,email=email,edad=edad)
 
 @app.route("/puntos", methods=['GET', 'POST'])
 def puntos():
@@ -146,5 +151,3 @@ def resul():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-app.secret_key = 'tu_clave_secreta_aqui'
