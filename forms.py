@@ -15,8 +15,9 @@ class UserForm(Form):
     amaterno=StringField('amaterno',[validators.DataRequired(message='El campo Apellido Materno requerido'),
                                  validators.length(min=4,max=10,message='Ingresa Apellido Materno valido')])
     email=EmailField('email',[validators.Email(message='Ingrese un correo valido')])
-    edad=IntegerField('edad',[validators.DataRequired(message='El campo Edad requerido'),
-                                 validators.length(min=4,max=10,message='Ingresa Edad valida')])
+    edad = IntegerField('edad', [validators.DataRequired(message='El campo Edad es requerido')])
+
+    
 
 class PuntosForm(FlaskForm):
     x1 = IntegerField('x1')
